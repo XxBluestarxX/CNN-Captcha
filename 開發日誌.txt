@@ -1,0 +1,54 @@
+2026 - 5/20 (Day 1)
+    最近學長回來分享，裡面有提到CNN模型，因為之前有做過但是卡住了，於是放棄了
+    這次聽到時，想重啟這個專案看看。於是誕生了這次的專案--CNN-辨識驗證碼
+
+    因為之前卡住的瓶頸是圖片切割有問題，於是我上網找了別人的作品(網址如下)
+    https://notes.andywu.tw/2019/%E7%94%A8tensorflowkeras%E8%A8%93%E7%B7%B4%E8%BE%A8%E8%AD%98%E9%A9%97%E8%AD%89%E7%A2%BC%E7%9A%84cnn%E6%A8%A1%E5%9E%8B/
+    看到她使用Tensorflow + Keras 來完成，並且直接將答案命名在驗證碼圖片的檔名上。所以不用切割。
+    於是我想試試看。
+    由於要下載驗證碼+命名，而且圖片要達幾千張，工作量龐大，於是我寫了兩個程式:downloadCaptcha.py、rename.py
+    來協助我完成這麼龐大的工作量。
+
+    今天先用個500張來試試看。
+
+2026 - 5/21 (Day 2)
+    500 張驗證碼準備好了，接下來可以進到寫CNN的步驟了。
+    首先，我需要先建立這個驗整碼可能會出現的字。
+    利用string這個套件
+    CHARS = string.ascii_lowercase 直接生成a~z 
+    其實手打a~z也可以 CHARS = "abcd....z"
+
+    再來是幫每個字母建立標籤:
+        char_to_idx = {char: idx for idx, char in enumerate(CHARS)} 今天新學到的打法(我還不太會用)
+
+        for idx, char in enumerate(CHARS):
+            char_to_idx[char] = idx
+
+        char_to_idx[char] 雖然這個長得像矩陣，
+        但在python 
+        
+        char_to_idx = {
+            "A" : 0,
+            "B" : 1
+        }
+
+        char_to_idx['A'] -> 這個會得到 0
+        像是一個字典的概念
+
+    還要建立一個標籤轉回字母的，因為辨識完之後要輸出答案:
+        idx_to_char = {idx: char for idx, char in enumerate(CHARS)}
+
+    裡面出現到的 enumerate(CHARS):
+        CHARS = ['A', 'B', 'C']
+        enumerate(CHARS)
+
+        OUTPUT:
+            [
+                (0, "A"),
+                (1, "B"),
+                (2, "C")
+            ]
+
+2026 - 5/22 (Day 3)
+    今天把500張圖片都導入到程式碼執行的記憶體中，
+

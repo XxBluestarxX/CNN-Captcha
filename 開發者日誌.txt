@@ -1,0 +1,48 @@
+這是一個紀錄我學習CNN時的筆記
+
+2026-5-20:
+    使用 downloadCaptcha.py 來下載我要的captcha 裡面有用到之前學的爬蟲 selenium
+
+    使用 rename.py 把檔名改成captcha的答案 
+
+    今天只用了500張captcha給模型學習，想要先測試CNN能不能正常運作
+
+    CNN 模型:
+        enumerate():
+            alphabet = ['a', 'b', 'c']
+                for index, char in enumerate(alphabet):
+                print(f'{index}:{char}')
+
+            OUTPUT:
+                0 : a
+                1 : b
+                2 : c
+
+        [:4]:
+            furit = "apple"
+            print(furit[:4])
+
+            OUTPUT:
+                appl
+
+        char_to_idx = {char: idx for idx, char in enumerate(CHARS)}
+
+        for idx, char in enumerate(CHARS):
+            har_to_idx[char] = idx
+
+        上面兩段程式碼是一樣的
+
+        One-Hot編碼:
+            ex.
+                A = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                B = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+2026-5-21
+
+    將訓練圖片新增至2000張，
+    成功率已經有五成了
+    
+2026-5-23
+
+    將卷績層與池畫層新增至5層
+    
